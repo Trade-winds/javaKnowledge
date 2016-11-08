@@ -7,8 +7,6 @@
 - Retrofit
 - Dagger2
 - Google andriod mvp 架构示例
--
-
 - 三条线并行：
     1. Java基础线
     2. Android系统结构线
@@ -26,3 +24,11 @@
     -> RxJava（阅读源码） ->  Dagger2(阅读源码) -> Android Data Binding
 
     React Native
+- MVP + Retrofig + Dagger + RxAndorid + EventBus + Glide + Realm + Andorid Data Binding
+- java模块分类：
+  - 虚拟机
+  - 多线程
+  - 容器
+  - IO流
+  - 其他琐碎知识
+    >泛型、注解、面向对象  
