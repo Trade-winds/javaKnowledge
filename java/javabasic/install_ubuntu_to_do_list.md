@@ -12,7 +12,7 @@
   - 系统文字为中文，但是home目录下的文件夹需要是英文
   - [ubuntu 终端 提示 忽略大小写](https://my.oschina.net/xiangxw/blog/12074)
   - 安装lantern
-  - jdk android studio intellij atom gradle chrome steam 网易云音乐
+  - jdk android studio intellij atom gradle chrome steam 网易云音乐 node.js
   - [intellij 激活](http://www.oschina.net/code/snippet_2303434_57174)
   - [解决Ubuntu中无法连接wifi的方法](http://xpleaf.blog.51cto.com/9315560/1687239)
   - [http://www.valleytalk.org/wp-content/uploads/2011/05/Java_Program_in_Action_20110727.pdf](http://www.valleytalk.org/wp-content/uploads/2011/05/Java_Program_in_Action_20110727.pdf)
