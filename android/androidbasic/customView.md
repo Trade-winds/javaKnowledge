@@ -1,0 +1,3 @@
+- `Matrix` 是一个矩阵，最根本的作用是坐标转换
+- `invalidate()` 用来简单重新绘制`View`，`View`将只调用`onDraw（）`方法再次更新其状态； `requestLayout()`方法将会从`onMeasure()`开始更新`View`,这意味着`View`更新后，它改变它的大小，你需要再次测量它，并依赖于新的大小来从新绘制。
+- 

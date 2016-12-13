@@ -1,0 +1,4 @@
+- Gradle中，每一个待编译的工程都叫一个Project，每一个Project在编译的时候都包含一系列的Task，**比如一个Android APK的编译可能包含：Java源代码编译Task、资源编译Task、JNI编译Task、lint检查Task、打包生成APK的Task、签名Task等**  
+- 一个Project到底包含多少个Task，其实是由编译脚本指定的插件决定。**插件是什么呢？插件就是用来定义Task，并具体执行这些Task的东西**  
+- Gradle是一个框架，作为框架，它负责定义流程和规则。而具体的编译工作则是通过插件的方式来完成的。**比如编译Java有Java插件，编译Groovy有Groovy插件，编译Android APP有Android APP插件，编译Android Library有Android Library插件**
+- 每一个Project都必须设置一个build.gradle文件

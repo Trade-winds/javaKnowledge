@@ -28,5 +28,8 @@ XmlResourceParse layout = resources.getLayout(android.R.layout.simple_list_item_
 
 - Android的每个应用，都会在/data/data/目录下创建一个与安装包同名的应用数据目录，用来存放运行数据，即应用数据目录为：**`/data/data/应用包名`/**，例如数据库测存放目录为**`/data/data/应用包名`/databases`**
 
-- Andorid中数据库一般使用`android.database.sqlite.SQLiteOpenHelper`类，该类中封装了一个`SqliteDatabase`对象，可以通过‘SQLiteOpenHelper.getReadalbe-Database’来获取可读数据库对象，通过`SQLiteOpenHelper.getWriteableDatabase`来获取一个可读写的数据库对象
+- Andorid中数据库一般使用`android.database.sqlite.SQLiteOpenHelper`类，该类中封装了一个`SqliteDatabase`对象，可以通过‘SQLiteOpenHelper.getReadalbe-Database’来获取可读数据库对象，通过`SQLiteOpenHelper.getWriteableDatabase`来获取一个可读写的数据库对象  
+
+- `SingleTask`模式是先寻找当前`activity`需要的任务栈（一般都是默认的任务栈），再判断该任务栈中是否已经存在该`activity`，如果已经存在，那么就不在从新创建；并且`SingleTask`模式具有`cleanTop`的作用，即如果栈中存在该`activity`，并且不是在栈顶位置，那么就会把位于该`activity`之上的其他`activity`全部清除出栈  
+
 - 
