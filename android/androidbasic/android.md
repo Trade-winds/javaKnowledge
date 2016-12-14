@@ -34,6 +34,25 @@ XmlResourceParse layout = resources.getLayout(android.R.layout.simple_list_item_
 
 - `intent-filter`的匹配规则有`action`,`category`,`data`,一个`Activity`可以有多个`intent-filter`,一个`intent`只有能匹配任何一组`intent-filter`即可启动对应的`Activity`,并且要同时匹配一组`intent-filter`列表中的`action`,`category`,`data`信息，也就是说只有一个`Intent`同时匹配`action`类别,`category`类别,`data`类别才能算完全匹配  
 
-- 对于`action`的匹配规则，一个过滤规则中（即一个`intent-filter`中）可以有多个`action`,那么只要`Intent`中的`action`和过滤规则中的任何一个`action`相同即可匹配成功，另外，`action`区分大小写，大小写不同字符串相同的`action`会匹配失败;需要注意的是，`Intent`中如果没有指定`action`，那么匹配失败
+- 对于`action`的匹配规则，一个过滤规则中（即一个`intent-filter`中）可以有多个`action`,那么只要`Intent`中的`action`和过滤规则中的任何一个`action`相同即可匹配成功(**注意：一个`Intent`只可以设置一个`action`,通过`setaction()`来设置**)，另外，`action`区分大小写，大小写不同字符串相同的`action`会匹配失败;需要注意的是，`Intent`中如果没有指定`action`，那么匹配失败
 
--
+- 对于`category`的匹配规则，`Intent`可以设置多个`category`，要求所设置的`category`都必须匹配`intent-filter`其中一个`category`，即必须满足`Intent`中的`category`是`intent-filter`中的`category`的子集，并且如果`Intent`没有设置`category`,也能匹配`intent-filter`,这是因为系统在调用`startActivity`或者`startActivityForResult`方法时，会默认给`Intent`加上`android.intent. category.DEFAULT`这个`category`，同时，为了我们的`activity`能够接收隐式调用，就必须在`intent-filter`中指定`android.intent.category.DEFAULT`这个`category`  
+
+- `data`的匹配规则和`action`类似，如果过滤规则中定义了`data`，那么`Intent`中必须也要定义可匹配的`data`，`data`由两部分组成，`mimeType`和`URI`，`mimeType`指媒体类型，`URI`的结构：
+` <scheme>://<host>:<port>/[<path>|<pathPrefix>|<pathPattern>]`  
+
+- 如果要为`Intent`指定完整的`data`，必须要调用`setDataAndType`方法，不能先调用`setData`再调用`setType`，因为这两个方法彼此会清除对方的值  
+
+- 当我们通过隐式方式启动一个`Activity`的时候，可以做一下判断，看是否有`Activity`能够匹配我们的隐式`Intent`，如果不做判断就有可能出现上述的错误了。判断方法有两种：采用`PackageManager`的`resolveActivity`方法或者`Intent`的`resolveActivity`方法，如果它们找不到匹配的`Activity`就会返回null，我们通过判断返回值就可以规避上述错误了。另外，`PackageManager`还提供了`queryIntentActivities`方法，这个方法和`resolveActivity`方法不同的是：它不是返回最佳匹配的`Activity`信息而是返回所有成功匹配的`Activity`信息
+
+- 通过给四大组件指定`android:process`属性，可以在Android中开启多进程，这也是在Android中使用多进程的**唯一方法**
+
+- 对于给`Activity`指定`android:process`进程名，进程名以“:”开头的进程属于当前应用的私有进程，其他应用的组件不可以和它跑在同一个进程中，而进程名不以“:”开头的进程属于全局进程，其他应用通过`ShareUID`方式可以和它跑在同一个进程中
+
+- 在Android中，系统会为每个应用分配一个独立的虚拟机，也就是为每个进程分配一个独立的虚拟机
+
+- 在Android中使用多进程会造成如下一些问题：1、静态成员和单利模式完全失效 2、线程同步机制完全失效 3、`SharedPreferences`的可靠性下降（这是因为`SharedPreferences`不支持两个进程同时进行写操作，否则会导致一定的概率丢失数据，`SharedPreferences`底层是对xml文件进行读写的） 4、`Application`会多次创建  
+
+- 静态成员属于类而不属于对象，是不能序列化和反序列化的；使用`transient`关键字标记的成员变量不参与序列化  
+
+- 
