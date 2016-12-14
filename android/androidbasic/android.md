@@ -32,4 +32,8 @@ XmlResourceParse layout = resources.getLayout(android.R.layout.simple_list_item_
 
 - `SingleTask`模式是先寻找当前`activity`需要的任务栈（一般都是默认的任务栈），再判断该任务栈中是否已经存在该`activity`，如果已经存在，那么就不在从新创建；并且`SingleTask`模式具有`cleanTop`的作用，即如果栈中存在该`activity`，并且不是在栈顶位置，那么就会把位于该`activity`之上的其他`activity`全部清除出栈  
 
-- 
+- `intent-filter`的匹配规则有`action`,`category`,`data`,一个`Activity`可以有多个`intent-filter`,一个`intent`只有能匹配任何一组`intent-filter`即可启动对应的`Activity`,并且要同时匹配一组`intent-filter`列表中的`action`,`category`,`data`信息，也就是说只有一个`Intent`同时匹配`action`类别,`category`类别,`data`类别才能算完全匹配  
+
+- 对于`action`的匹配规则，一个过滤规则中（即一个`intent-filter`中）可以有多个`action`,那么只要`Intent`中的`action`和过滤规则中的任何一个`action`相同即可匹配成功，另外，`action`区分大小写，大小写不同字符串相同的`action`会匹配失败;需要注意的是，`Intent`中如果没有指定`action`，那么匹配失败
+
+-
